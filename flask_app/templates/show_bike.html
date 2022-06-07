@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>MTB reveiws</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar display_flex border width">
+            <h1>MTB reveiws</h1>
+            <div>
+                <a href="/dashboard">Home</a>
+            </div>
+        </div>
+        <div class="show_bike">
+            <h1>Bike Reveiw</h1>
+            <p><u>Name:</u> {{bike.name}}</p>
+            <p><u>Price:</u> ${{bike.price}}</p>
+            <p><u>Suspension:</u> {{bike.suspension}}</p>
+            <p><u>Description:</u> {{bike.description}}</p>
+        </div>
+    </div>
+</body>
+</html>

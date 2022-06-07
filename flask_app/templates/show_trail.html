@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>MTB reveiws</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar display_flex border width">
+            <h1>MTB reveiws</h1>
+            <div>
+                <a href="/dashboard">Home</a>
+            </div>
+        </div>
+        <div class="show_trail">
+            <h1>Trail Reveiw</h1>
+            <p><u>Name:</u> {{trail.name}}</p>
+            <p id="city"><u>City:</u> {{trail.city}}</p>
+            <p id="state"><u>State:</u> {{trail.state}}</p>
+            <p><u>Difficulty:</u> {{trail.difficulty}}</p>
+            <p><u>What Type:</u> {{trail.what_type}}</p>
+        </div>
+        <div class="weather">
+            
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/weather.js') }}"></script>
+</body>
+</html>

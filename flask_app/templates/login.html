@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>MTB reviews</title>
+</head>
+<body>
+    <div class="login">
+        <h1>Login</h1>
+        <div class="red">
+            {% with messages = get_flashed_messages(category_filter = ['login']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+            <form action="/signin" method="post">
+                <div class="margin">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="margin">
+                    <label for="password">Password:</label>
+                    <input type="text" name="password">
+                </div>
+                <div class="margin">    
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <a href="/register">New User?</a>    
+    </div>
+</body>
+</html>

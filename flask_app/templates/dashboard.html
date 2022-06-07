@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>MTB reveiws</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar display_flex border">
+            <h1>MTB reveiws</h1>
+            <div class="display_flex">
+                <h1>Welcome, {{user.first_name}}!</h1>
+            </div>
+        </div>
+        <br>
+        <form action="/logout" method="post">
+            <button>Log Out</button>
+        </form>
+        <div class="flex_body display_flex">
+            <div class="trails flex border">
+                <h2>List of trails</h2>
+                {% for trail in all_trails %}
+                    <div class=" color border margin">
+                        <h4>{{trail.name}}</h4>
+                        <p>{{trail.what_type}}</p>
+                        <p>Created by: {{trail.creator.first_name}}</p>
+                        <a href="/trail_show/{{trail.id}}">Show</a>
+                        {% if trail.user_id == session.user_id %}
+                            <a href="/edit/trail/{{trail.id}}">Edit</a>
+                            <a href="/delete/trail/{{trail.id}}">Delete</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <a href="/create_trail">Create</a>
+            </div>
+            <div class="bikes flex border">
+                <h2>List of bikes</h2>
+                {% for bike in all_bikes %}
+                <div class=" color margin border">
+                    <h4>{{bike.name}}</h4>
+                    <p>{{bike.suspension}}</p>
+                    <p>${{bike.price}}</p>
+                    <p>Created by: {{bike.creator.first_name}}</p>
+                    <a href="/bike_show/{{bike.id}}">Show</a>
+                    {% if bike.user_id == session.user_id %}
+                        <a href="/edit/bike/{{bike.id}}">Edit</a>
+                        <a href="/delete/bike/{{bike.id}}">Delete</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <a href="/create_bike">Create</a>
+            </div>
+        </div> 
+    </div>   
+</body>
+</html>

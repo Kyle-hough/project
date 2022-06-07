@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>MTB reveiws</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar display_flex border width">
+            <h1>MTB reveiws</h1>
+            <div>
+                <a href="/dashboard">Home</a>
+            </div>
+        </div>
+        <div class="create_trail">
+            <h1>Create a bike reveiw:</h1>
+            <div class="red">
+                {% with messages = get_flashed_messages(category_filter = ['bike']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div>
+                <form action="/create/bike" method="post">
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <div class="margin">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="margin">
+                        <label for="price">Price</label> 
+                        <input type="text" name="price">
+                    </div>
+                    <div class="margin">
+                        <label for="suspension">Suspension</label>
+                        <label>
+                            <input type="radio" name="suspension" value="Hardtail">
+                            Hardtail
+                        </label>
+                        <label>
+                            <input type="radio" name="suspension" value="Full suspension">
+                            Full Suspension
+                        </label>
+                    </div>
+                    <div class="margin">
+                        <label for="what_type">Description:</label>
+                        <input type="textarea" name="description">
+                    </div>
+                    <input type="submit" value="Create" class="margin">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

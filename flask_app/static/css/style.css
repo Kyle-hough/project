@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.red {
+    background-color: red;
+    width: fit-content;
+}
+.container {
+    width: 60%;
+    margin: auto;
+    background-color: #66462C;
+    padding: 20px;
+}
+.display_flex {
+    display: flex;
+}
+
+.flex_direction {
+    flex-direction: column;
+}
+
+.color {
+    background-color: #6B8F71;
+    padding: 10px;
+}
+
+.border {
+    border: 2px solid black;
+}
+.navbar {
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #041B15;
+    color: white;
+}
+
+.flex_body {
+    margin-top: 20px;
+}
+
+.flex {
+    flex: auto;
+}
+
+.width {
+    margin: auto;
+}
+
+.login,
+.register,
+.create_trail,
+.show_trail,
+.show_bike {
+    width: 30%;
+    margin: auto;
+    border: 2px solid black;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #6B8F71;
+}
+
+.margin {
+    margin: 10px;
+}
+
+.bikes {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #F7DBA7
+}
+
+.trails {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #F7DBA7
+}

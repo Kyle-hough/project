@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="header center display_flex padding">
+        <h1>Welcome {{user.first_name}}!</h1>    
+        <div>
+            <form action="/logout" method="post">
+                <button>Log Out</button>
+            </form>
+        </div>    
+    </div>
+    <a href="/new/sighting">Reveiw a trail</a>
+    <table>
+        <h2>Trails</h2>
+        {% for sighting in all_sightings%}
+            <div>
+                <p>{{sighting.location}} - {{sighting.date_seen.strftime('%Y-%m-%d')}} <br>
+                Reported by: {{sighting.reporter.first_name}}</p>
+                {% if sighting.user_id != session.user_id %}
+                    <a href="/show/{{sighting.id}}">Veiw</a>
+                {% else %}
+                    <a href="/edit/{{sighting.id}}">Edit</a>
+                    <a href="/delete/{{sighting.id}}">Delete</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </table>
+</body>
+</html>
