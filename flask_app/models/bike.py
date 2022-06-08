@@ -8,7 +8,6 @@ class Bike:
         self.id = data['id']
         self.name = data['name']
         self.price = data['price']
-        self.suspension = data['suspension']
         self.description = data['description']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -16,12 +15,12 @@ class Bike:
 
     @classmethod
     def create(cls, data):
-        query = "INSERT INTO bikes (user_id, name, price, suspension, description) VALUES (%(user_id)s, %(name)s, %(price)s, %(suspension)s, %(description)s); "
+        query = "INSERT INTO bikes (user_id, name, price, description) VALUES (%(user_id)s, %(name)s, %(price)s, %(description)s); "
         return connectToMySQL("project_db").query_db(query, data)
 
     @classmethod
     def update_bike(cls, data):
-        query = "UPDATE bikes SET name = %(name)s, price = %(price)s, suspension = %(suspension)s, description = %(description)s WHERE id = %(id)s;"
+        query = "UPDATE bikes SET name = %(name)s, price = %(price)s, description = %(description)s WHERE id = %(id)s;"
         connectToMySQL("project_db").query_db(query, data)
 
     @classmethod
@@ -77,16 +76,13 @@ class Bike:
         if len(data['name']) <= 3:
             flash("Name must be greater than one character." , "bike")
             is_valid = False
-        if len(data['price']) <= 100:
-            flash("Enter a price", "bike")
-            is_valid = False
-        if "suspension" in data:
-            if data['suspension'] not in ["Hardtail", "Full Suspension"]:
-                flash("Please select a valid type." , "bike")
+        if data['price'].isnumeric():
+            if int(data['price']) < 1000:
                 is_valid = False
+                flash("Enter a price", "bike")
         else:
-            flash("Please select a type." , "bike")
             is_valid = False
+            flash("Must be a number")
         if len(data['description']) <= 3:
             flash("Description must be three characters." , "bike")
             is_valid = False
